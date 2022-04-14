@@ -19,6 +19,8 @@ namespace LearningEfc.Extensions
         public static Expression<Func<Foo, FooDto>> FooExpressionB = x => new FooDto(x.Something, x.Bars.Select(BarFunc).ToList());
         public static Expression<Func<Foo, FooDto>> FooExpressionC = x => new FooDto(x.Something, x.Bars.Select(BarMethodA).ToList());
         public static Expression<Func<Foo, FooDto>> FooExpressionD = x => new FooDto(x.Something, x.Bars.Select(BarMethodB).ToList());
+        public static Expression<Func<Foo, FooDto>> FooExpressionE = x => new FooDto(x.Something, x.Bars.AsQueryable().Select(BarExpression).ToList());
+        public static Expression<Func<Foo, FooDto>> FooExpressionF = x => new FooDto(x.Something, x.Bars.AsQueryable().SelectBars().ToList());
 
         public static Expression<Func<Bar, BarDto>> BarExpression = x => new BarDto(x.Something, x.Something2);
 
@@ -28,6 +30,11 @@ namespace LearningEfc.Extensions
         public static BarDto BarMethodB(Bar x)
         {
             return new BarDto(x.Something, x.Something2);
+        }
+
+        public static IQueryable<BarDto> SelectBars(this IQueryable<Bar> source)
+        {
+            return source.Select(x => new BarDto(x.Something, x.Something2));
         }
     }
 }

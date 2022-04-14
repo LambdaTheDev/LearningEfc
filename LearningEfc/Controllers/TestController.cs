@@ -30,6 +30,8 @@ namespace LearningEfc.Controllers
             Dismiss("B", db.Foos, FooExtensions.FooExpressionB);
             Dismiss("C", db.Foos, FooExtensions.FooExpressionC);
             Dismiss("D", db.Foos, FooExtensions.FooExpressionD);
+            Dismiss("E", db.Foos, FooExtensions.FooExpressionE);
+            Dismiss("F", db.Foos, FooExtensions.FooExpressionF);
         }
 
         public void Dismiss(string id, IQueryable<Foo> inst, Expression<Func<Foo, FooDto>> expr)
