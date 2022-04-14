@@ -8,6 +8,13 @@ namespace LearningEfc.Extensions
 {
     public static class FooExtensions
     {
+        /*
+         *
+         * MY GOAL: TO HAVE ONE, OR TWO MODEL-TO-DTO-CONVERTERS TO REDUCE
+         * WRITING THE SAME CODE A LOT AMOUNT OF TIMES IN MY ACTUAL PROJECT
+         * 
+         */
+        
         public static Expression<Func<Foo, FooDto>> FooExpressionA = x => new FooDto(x.Something, x.Bars.Select(y => new BarDto(y.Something, y.Something2)).ToList());
         public static Expression<Func<Foo, FooDto>> FooExpressionB = x => new FooDto(x.Something, x.Bars.Select(BarFunc).ToList());
         public static Expression<Func<Foo, FooDto>> FooExpressionC = x => new FooDto(x.Something, x.Bars.Select(BarMethodA).ToList());
