@@ -22,9 +22,13 @@ namespace LearningEfc.Extensions
         public static Expression<Func<Foo, FooDto>> FooExpressionE = x => new FooDto(x.Something, x.Bars.AsQueryable().Select(BarExpression).ToList());
         public static Expression<Func<Foo, FooDto>> FooExpressionF = x => new FooDto(x.Something, x.Bars.AsQueryable().SelectBars().ToList());
 
-        public static Expression<Func<Bar, BarDto>> BarExpression = x => new BarDto(x.Something, x.Something2);
+        public static readonly Expression<Func<Foo, FooTestDto>> FooTestExpression = x => new FooTestDto(x.Something, BarExpression.Compile().Invoke(x.TestBar));
+        public static readonly Expression<Func<Foo, FooTestDto>> FooTestExpressionB = x => new FooTestDto(x.Something, new BarDto(x.TestBar.Something, x.TestBar.Something2));
+        public static readonly Expression<Func<Foo, FooTestDto>> FooTestExpressionC = x => new FooTestDto(x.Something, BarFunc.Invoke(x.TestBar));
 
-        public static Func<Bar, BarDto> BarFunc => x => new BarDto(x.Something, x.Something2);
+        public static Expression<Func<Bar, BarDto>> BarExpression = x => x == null ? null : new BarDto(x.Something, x.Something2);
+
+        public static Func<Bar, BarDto> BarFunc => x => x == null ? null : new BarDto(x.Something, x.Something2);
         public static BarDto BarMethodA(Bar x) => new BarDto(x.Something, x.Something2);
 
         public static BarDto BarMethodB(Bar x)

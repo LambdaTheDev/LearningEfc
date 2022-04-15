@@ -3,14 +3,16 @@ using System;
 using LearningEfc.Databases;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LearningEfc.Migrations
 {
     [DbContext(typeof(TestDatabase))]
-    partial class TestDatabaseModelSnapshot : ModelSnapshot
+    [Migration("20220415074152_Test3")]
+    partial class Test3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

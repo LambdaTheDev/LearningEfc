@@ -24,14 +24,14 @@ namespace LearningEfc.Controllers
         [HttpGet]
         public void Tests()
         {
-            var x = db.Foos.ToList();
+            var expr = db.Foos.Select(FooExtensions.FooTestExpression);
+            Console.WriteLine(expr.ToQueryString());
             
-            Dismiss("A", db.Foos, FooExtensions.FooExpressionA);
-            Dismiss("B", db.Foos, FooExtensions.FooExpressionB);
-            Dismiss("C", db.Foos, FooExtensions.FooExpressionC);
-            Dismiss("D", db.Foos, FooExtensions.FooExpressionD);
-            Dismiss("E", db.Foos, FooExtensions.FooExpressionE);
-            Dismiss("F", db.Foos, FooExtensions.FooExpressionF);
+            var expr2 = db.Foos.Select(FooExtensions.FooTestExpressionB);
+            Console.WriteLine(expr2.ToQueryString());
+            
+            var expr3 = db.Foos.Select(FooExtensions.FooTestExpressionC);
+            Console.WriteLine(expr3.ToQueryString());
         }
 
         public void Dismiss(string id, IQueryable<Foo> inst, Expression<Func<Foo, FooDto>> expr)
