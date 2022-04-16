@@ -9,9 +9,18 @@ namespace LearningEfc.Models
         public int Secret { get; set; }
         public ICollection<Bar> Bars { get; set; }
         public Bar TestBar { get; set; }
+        public int TestBarId { get; set; }
     }
 
-    public record FooDto(int Something, List<BarDto> Bars);
+    public class FooTestDto
+    {
+        public int Something { get; set; }
+        public BarDto TestBar { get; set; }
+    }
 
-    public record FooTestDto(int Something, BarDto TestDto);
+    public class FooDto
+    {
+        public int Something { get; set; }
+        public List<BarDto> Bars { get; set; }
+    }
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using LearningEfc.Databases;
 using Microsoft.AspNetCore.Builder;
@@ -34,6 +35,8 @@ namespace LearningEfc
             // {
             //     c.SwaggerDoc("v1", new OpenApiInfo { Title = "LearningEfc", Version = "v1" });
             // });
+
+            services.AddAutoMapper(Assembly.GetAssembly(typeof(Program)));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

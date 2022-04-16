@@ -8,5 +8,9 @@ namespace LearningEfc.Models
         public int Secret { get; set; }
     }
 
-    public record BarDto(int Something, int Something2);
+    public class BarDto
+    {
+        public int Something { get; set; }
+        public int Something2 { get; set; }
+    }
 }
